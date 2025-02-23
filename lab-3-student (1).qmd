@@ -1,3 +1,11 @@
+---
+title: "Lab 3 ggplot"
+author: "Aida Aquino Arias"
+html:
+  embed-resources: true
+  code-tools: true
+  echo: true
+---
 # Part 1: Setup
 
 
@@ -154,9 +162,13 @@ It takes a larger cognitive load to read text that is rotated. It is common prac
 ggplot(data = surveys,
        mapping = aes(x = weight,
                      y = species)) +
-  geom_boxplot()
-
-
+  geom_boxplot(outliers = FALSE) +
+  geom_jitter(mapping = aes(color = weight,
+                            alpha = 0.5)) +
+  theme(axis.text.y = element_text(angle = 45)) +
+  labs(x = "Weight of the Rodents",
+       y = "Rodent Species")
+## created a box plot and updated the aesthetics and rotated the text 45 degrees as well as added the jitter to make the plot more readable.
 ```
 
 **9. Create side-by-side boxplots to visualize the distribution of weight within each species.**
@@ -197,6 +209,18 @@ Some people (and journals) prefer for boxplots to be stacked with a specific ori
 
 ```{r}
 #| label: rotated-boxplot
+#| eval: false
+ggplot(data = surveys,
+       mapping = aes(x = species,
+                     y = weight)) +
+  geom_boxplot(outliers = FALSE) +
+  geom_jitter(mapping = aes(color = weight,
+                            alpha = 0.5)) +
+  theme(axis.text.x = element_text(angle = 45)) +
+  labs(x = "Rodent Species",
+       y = "Weight of the Rodents")
+## updated the previous code to be flipped
+```
 
 ```
 
